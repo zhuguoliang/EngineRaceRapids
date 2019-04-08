@@ -2,6 +2,8 @@ add_executable(skip_list_study skip_list_study.cpp)
 
 add_executable(polar_string_study polar_string_study.cpp log.cpp stat.cpp)
 
+add_executable(polar_string_study_1 polar_string_study_1.cpp log.cpp stat.cpp)
+
 find_package(OpenMP)
 if (OPENMP_FOUND)
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")

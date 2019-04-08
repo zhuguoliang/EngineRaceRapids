@@ -10,7 +10,24 @@
 #include <array>
 #include <cassert>
 
+#ifdef _MSC_VER
+
+#include <stdlib.h>
+    #define bswap_32(x) _byteswap_ulong(x)
+    #define bswap_64(x) _byteswap_uint64(x)
+#elif defined(__APPLE__)
+
+// Mac OS X / Darwin features
+#include <libkern/OSByteOrder.h>
+#define bswap_32(x) OSSwapInt32(x)
+#define bswap_64(x) OSSwapInt64(x)
+#include <sys/malloc.h>
+#else
 #include <byteswap.h>
+#include <malloc.h>
+#endif
+
+
 
 #include "include/engine.h"
 #include "../engine_race/log.h"
