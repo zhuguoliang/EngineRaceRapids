@@ -30,3 +30,4 @@ add_library(test_engine
         test/test.cc)
 
 add_subdirectory(playground)
+add_subdirectory(learnwhyfast)
