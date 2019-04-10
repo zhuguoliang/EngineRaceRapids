@@ -94,5 +94,7 @@ int main(){
     cout << "Time: " << (double)(end - start) / CLOCKS_PER_SEC << " seconds" << endl;
 
     _mm_free(T);
-    system("pause");
+    //system("pause");
+    //pause();
+
 }

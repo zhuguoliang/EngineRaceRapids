@@ -68,7 +68,8 @@ int main() {
     Worker<true> with_prefetch(keys);
 
     std::cout << "#preloops\ttime no prefetch\ttime prefetch\tfactor\n";
-    std::cout << std::setprecision(17);
+    //std::cout << std::setprecision(17);
+    std::cout << std::setprecision(6);
 
     for (int i = 0; i < 20; i++) {
         //let oracle see i steps in the future:
