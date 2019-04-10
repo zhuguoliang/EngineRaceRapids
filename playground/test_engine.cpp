@@ -170,7 +170,9 @@ int main() {
             auto verify_int = static_cast<uint64_t>(-1);
             memcpy(polar_key_str, &i, sizeof(uint64_t));
             PolarString polar_key(polar_key_str, 8);
+
             assert(engine->Read(polar_key, &tmp_str) != kNotFound);
+
             for (uint64_t j = 0; j < 4096; j += 8) {
                 memcpy(&verify_int, tmp_str.c_str() + j, sizeof(uint64_t));
                 if (verify_int != j + i + seed) {
@@ -193,12 +195,14 @@ int main() {
             auto verify_int = static_cast<uint64_t>(-1);
             memcpy(polar_key_str, &i, sizeof(uint64_t));
             PolarString polar_key(polar_key_str, 8);
+
             assert(engine->Read(polar_key, &tmp_str) == kNotFound);
+
         }
         delete engine;
     }
 #endif
-
+//range phase
     {
         log_info("range");
         // 3rd: sequential

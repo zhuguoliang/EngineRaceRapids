@@ -52,13 +52,48 @@ int main() {
         log_info("%c", ps.data()[i]);
     }
 
+    std::cout<<"==================================================================="<<std::endl;
     using namespace std::chrono;
     high_resolution_clock::time_point t1 = high_resolution_clock::now();
+    auto a = PolarString(chars, sizeof(int64_t));
     high_resolution_clock::time_point t2 = high_resolution_clock::now();
 
     duration<double> time_span = duration_cast<duration<double>>(t2-t1);
-    std::cout << "It took me " << time_span.count() << " seconds.";
+    std::cout << "It takes " << time_span.count() << " seconds to cast char * to PolarString.";
     std::cout << std::endl;
+
+    t1 = high_resolution_clock::now();
+    int64_t int2 = polar_str_to_int64(a);
+    t2 = high_resolution_clock::now();
+
+    time_span = duration_cast<duration<double>>(t2-t1);
+    std::cout << "It takes " << time_span.count() << " seconds to cast PolarString to int64_t.";
+    std::cout << std::endl;
+
+
+    t1 = high_resolution_clock::now();
+    //int64_t int3 = polar_str_to_int64(a);
+    auto ps1 = PolarString(reinterpret_cast<char *>(&int1), sizeof(int64_t));
+    t2 = high_resolution_clock::now();
+
+    time_span = duration_cast<duration<double>>(t2-t1);
+    std::cout << "It takes " << time_span.count() << " seconds to cast int64_t to PolarString.";
+    std::cout << std::endl;
+
+
+    t1 = high_resolution_clock::now();
+    memcpy(chars, &int1, sizeof(uint64_t));
+    PolarString polar(chars,8);
+    t2 = high_resolution_clock::now();
+
+    time_span = duration_cast<duration<double>>(t2-t1);
+    std::cout << "It takes " << time_span.count() << " seconds to cast int64_t to PolarString.";
+    std::cout << std::endl;
+
+
+
+//conclusion: after several runs we can see that cast from char * to PolarString is the most slow
+
 
 
 }
